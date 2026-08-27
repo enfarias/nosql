@@ -1,11 +1,14 @@
 package com.treinamento.workshopmongo.models.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="users")
+@Document(collection = "users")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -14,6 +17,9 @@ public class User implements Serializable {
 	private String name;
 	private String email;
 
+	@DBRef(lazy = true)
+	public List<Post> post = new ArrayList<>();
+	
 	public User() {
 	}
 
