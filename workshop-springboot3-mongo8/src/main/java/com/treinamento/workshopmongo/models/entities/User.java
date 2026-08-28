@@ -18,7 +18,7 @@ public class User implements Serializable {
 	private String email;
 
 	@DBRef(lazy = true)
-	public List<Post> post = new ArrayList<>();
+	public List<Post> posts = new ArrayList<>();
 	
 	public User() {
 	}
@@ -53,6 +53,10 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public List<Post> getPosts() {
+		return posts;
+	}
 
 	@Override
 	public int hashCode() {
@@ -78,4 +82,5 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
+
 }
