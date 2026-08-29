@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.treinamento.workshopmongo.models.dto.PostDTO;
 import com.treinamento.workshopmongo.models.dto.UserDTO;
 import com.treinamento.workshopmongo.models.entities.User;
 import com.treinamento.workshopmongo.repositories.UserRepository;
@@ -31,6 +32,11 @@ public class UserService {
 	private User getEntityById(String id) {
 		Optional<User> result = repository.findById(id);
 		return result.orElseThrow(() -> new ResourceNotFoundException("Objeto não encontrado"));
+	}	
+	
+	public List<PostDTO> getUserPosts(String id) {
+		User user = getEntityById(id);
+		return user.getPosts().stream().map(x -> new PostDTO(x)).collect(Collectors.toList());
 	}	
 	
 	public UserDTO insert(UserDTO dto) {
