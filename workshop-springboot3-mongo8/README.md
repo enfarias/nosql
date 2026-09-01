@@ -12,10 +12,10 @@ Uma API RESTful desenvolvida com **Java 21** e **Spring Boot 3.3.4**, integrada 
 ## 📋 Sumário
 
 - [Visão Geral](#-visão-geral)
-- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [Arquitetura e Modelo de Dados](#-arquitetura-e-modelo-de-dados)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Arquitetura e Modelo de Dados](#arquitetura-e-modelo-de-dados)
 - [Endpoints da API](#-endpoints-da-api)
-- [Configuração e Execução](#-configuração-e-execução)
+- [Configuração e Execução](#-configuracao-e-execucao)
 - [Testes e População Inicial](#-testes-e-população-inicial)
 - [Coleção do Postman](#-coleção-do-postman)
 - [Referências e Documentação](#-referências-e-documentação)
@@ -23,6 +23,7 @@ Uma API RESTful desenvolvida com **Java 21** e **Spring Boot 3.3.4**, integrada 
 
 ---
 
+<a id="-visao-geral"></a>
 ## 🎯 Visão Geral
 
 O projeto consiste na gestão de usuários e postagens de uma rede social fictícia (*DSPosts*). A aplicação permite realizar operações de **CRUD** para usuários, associar postagens a usuários com suporte a comentários embutidos, e efetuar buscas customizadas (busca por título e busca completa no texto/comentários por intervalo de datas).
@@ -35,6 +36,7 @@ O projeto consiste na gestão de usuários e postagens de uma rede social fictí
 
 ---
 
+<a id="tecnologias-utilizadas"></a>
 ## 🛠️ Tecnologias Utilizadas
 
 - **Linguagem**: Java 21
@@ -48,6 +50,7 @@ O projeto consiste na gestão de usuários e postagens de uma rede social fictí
 
 ---
 
+<a id="arquitetura-e-modelo-de-dados"></a>
 ## 🏗️ Arquitetura e Modelo de Dados
 
 ### Estrutura de Camadas
@@ -100,13 +103,25 @@ com.treinamento.workshopmongo
   "email": "ana@gmail.com"
 }
 ```
-#### Parâmetros da Busca Completa (`/posts/fullsearch`):
-- `text`: Texto a ser pesquisado (*opcional*).
+### Postagens (`/posts`)
+
+| Método | Endpoint | Descrição |
+| :--- | :--- | :--- |
+| `GET` | `/posts/{id}` | Busca uma postagem específica por ID (incluindo autor e comentários embutidos). |
+| `GET` | `/posts/titlesearch` | Realiza busca de postagens por trecho do título (utilizando Regex / busca case-insensitive). |
+| `GET` | `/posts/fullsearch` | Realiza busca avançada no texto/título/comentários por termo dentro de um intervalo de datas. |
+
+#### Parâmetros de Query da Busca por Título (`GET /posts/titlesearch`):
+- `text`: Texto/termo a ser pesquisado no título da postagem (ex: `text=bom dia`).
+
+#### Parâmetros de Query da Busca Completa (`GET /posts/fullsearch`):
+- `text`: Texto/termo a ser pesquisado no título, corpo ou comentários (*opcional*, ex: `text=bo`).
 - `start`: Data inicial no formato ISO 8601, ex: `2021-02-01T00:00:00Z` (*opcional*).
 - `end`: Data final no formato ISO 8601, ex: `2021-02-15T23:59:59Z` (*opcional*).
 
 ---
 
+<a id="-configuracao-e-execucao"></a>
 ## ⚙️ Configuração e Execução
 
 ### Pré-requisitos
@@ -158,6 +173,7 @@ A API estará disponível em: `http://localhost:8080`
 
 ---
 
+<a id="-testes-e-populacao-inicial"></a>
 ## 🧪 Testes e População Inicial
 
 Quando a aplicação é iniciada sob o perfil `test` (`@Profile("test")`), a classe `TestConfig` limpa as coleções existentes e popula o banco de dados com dados fictícios para facilitar o teste imediato dos endpoints:
@@ -168,6 +184,7 @@ Quando a aplicação é iniciada sob o perfil `test` (`@Profile("test")`), a cla
 
 ---
 
+<a id="-colecao-do-postman"></a>
 ## 📬 Coleção do Postman
 
 O repositório inclui o arquivo `DSPosts.postman_collection.json` localizado na raiz do projeto.
@@ -179,6 +196,7 @@ Para testar as requisições:
 
 ---
 
+<a id="-referencias-e-documentacao"></a>
 ## 📚 Referências e Documentação
 
 - [Documentação Oficial do Spring Data MongoDB](https://docs.spring.io/spring-data/mongodb/docs/current/reference/html)
@@ -186,6 +204,7 @@ Para testar as requisições:
 
 ---
 
+<a id="licenca"></a>
 ## 📄 Licença
 
 Este projeto é disponibilizado sob a licença [MIT](LICENSE).      
