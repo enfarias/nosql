@@ -1,5 +1,7 @@
 package com.treinamento.workshopmongo.services;
 
+import java.time.Instant;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +28,11 @@ public class PostService {
 		return repository.searchTitle(text)
 				.map(PostDTO::new);
 	}	
+
+	public Flux<PostDTO> fullSearch(String text, Instant startMoment, Instant endMoment) {
+		endMoment = (endMoment != null) ? endMoment.plusSeconds(86400) : null;
+		return repository.fullSearch(text, startMoment, endMoment)
+				.map(PostDTO::new);
+	}
 	
 }
