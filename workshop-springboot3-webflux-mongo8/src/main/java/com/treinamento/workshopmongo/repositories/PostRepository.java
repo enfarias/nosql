@@ -13,6 +13,9 @@ import reactor.core.publisher.Flux;
 @Repository
 public interface PostRepository extends ReactiveMongoRepository<Post, String> {
 
+	@Query("{ 'author._id' : ?0 }")
+	Flux<Post> findByUser(String id);
+
 	@Query("{ 'title': { $regex: ?0, $options: 'i' } }")
 	Flux<Post> searchTitle(String text);
 

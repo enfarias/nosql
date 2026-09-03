@@ -35,4 +35,8 @@ public class PostService {
 				.map(PostDTO::new);
 	}
 	
+	public Flux<PostDTO> findByUser(String id) {
+		return repository.findByUser(id)
+				.map(PostDTO::new);
+	}
 }
