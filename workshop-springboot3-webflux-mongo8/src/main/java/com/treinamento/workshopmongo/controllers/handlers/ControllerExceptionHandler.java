@@ -8,7 +8,7 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.treinamento.workshopmongo.dto.CustomError;
+import com.treinamento.workshopmongo.controllers.handlers.dto.CustomError;
 import com.treinamento.workshopmongo.services.exceptions.ResourceNotFoundException;
 
 @ControllerAdvice

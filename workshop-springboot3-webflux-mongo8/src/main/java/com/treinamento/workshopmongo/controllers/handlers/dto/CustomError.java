@@ -1,4 +1,4 @@
-package com.treinamento.workshopmongo.dto;
+package com.treinamento.workshopmongo.controllers.handlers.dto;
 
 import java.time.Instant;
 
